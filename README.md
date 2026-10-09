@@ -3,7 +3,7 @@
 Trang web tổng hợp các công cụ AI hay nhất năm 2026 giúp tối ưu công việc và sáng tạo.
 
 ## 🔗 Demo Trực Tuyến
-Bạn có thể trải nghiệm trang web tại: [AI Hub Live](https://skibidi2505.github.io/Ai-Warehouse/)
+Bạn có thể trải nghiệm trang web tại:https://skibidi2505.github.io/Ai-Warehouse/
 
 ## ✨ Tính Năng
 - Tìm kiếm công cụ AI theo từ khóa.
