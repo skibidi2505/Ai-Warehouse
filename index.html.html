@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hub - Tổng Hợp Công Cụ AI Hay Nhất</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glassmorphism {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 9999px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 glassmorphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilters()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-blue-500/30">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight">AI<span class="gradient-text">Hub</span></span>
+                    <span class="hidden sm:inline-block text-xs text-slate-500 dark:text-slate-400 ml-2 font-medium">Kho Công Cụ AI Đỉnh Cao</span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button id="favoriteFilterBtn" onclick="toggleFavoriteFilter()" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium transition">
+                    <i class="fa-solid fa-bookmark text-amber-500"></i>
+                    <span class="hidden sm:inline">Đã Lưu</span>
+                    <span id="favCountBadge" class="bg-amber-500 text-white text-xs px-1.5 py-0.5 rounded-full font-bold">0</span>
+                </button>
+
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition" title="Đổi Chế Độ Sáng/Tối">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Hero & Banner SECTION -->
+        <section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white p-8 md:p-12 shadow-2xl border border-slate-800">
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute right-1/3 -top-10 w-60 h-60 bg-purple-500/20 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 max-w-2xl">
+                <span class="inline-block px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                    🚀 Cập Nhật Công Nghệ AI 2026
+                </span>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
+                    Khám Phá Sức Mạnh Với <span class="gradient-text">Trí Tuệ Nhân Tạo</span>
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                    Tổng hợp những công cụ AI hàng đầu thế giới giúp nâng cao hiệu suất làm việc, sáng tạo nội dung, lập trình và tạo nên đột phá cho dự án của bạn.
+                </p>
+            </div>
+        </section>
+
+        <section class="space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold flex items-center space-x-2">
+                    <i class="fa-solid fa-fire text-orange-500"></i>
+                    <span>AI Nổi Bật Dẫn Đầu</span>
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Được cộng đồng đánh giá cao nhất</span>
+            </div>
+            <div id="featuredGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Featured cards populated dynamically -->
+            </div>
+        </section>
+
+        <section class="space-y-6 pt-4">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <!-- Search Box -->
+                <div class="relative w-full md:w-96">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Tìm kiếm AI theo tên, tính năng..." 
+                        class="w-full pl-10 pr-10 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition shadow-sm">
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="flex items-center space-x-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">Mức phí:</span>
+                    <button onclick="setPriceFilter('all')" class="price-btn active px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-800 transition whitespace-nowrap bg-blue-600 text-white">Tất cả</button>
+                    <button onclick="setPriceFilter('Free')" class="price-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-800 transition whitespace-nowrap bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300">Miễn phí</button>
+                    <button onclick="setPriceFilter('Freemium')" class="price-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-800 transition whitespace-nowrap bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300">Freemium</button>
+                    <button onclick="setPriceFilter('Paid')" class="price-btn px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-800 transition whitespace-nowrap bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300">Trả phí</button>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div id="categoryContainer" class="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar">
+                <!-- Categories dynamically loaded -->
+            </div>
+        </section>
+
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <p id="resultCount" class="text-sm font-medium text-slate-500 dark:text-slate-400">Hiển thị 0 công cụ AI</p>
+                <div class="flex items-center space-x-2">
+                    <label for="sortSelect" class="text-xs text-slate-500 dark:text-slate-400">Sắp xếp:</label>
+                    <select id="sortSelect" onchange="handleSort()" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs rounded-lg px-2.5 py-1.5 focus:outline-none text-slate-700 dark:text-slate-300">
+                        <option value="popular">Phổ biến nhất</option>
+                        <option value="nameAsc">Tên (A-Z)</option>
+                        <option value="nameDesc">Tên (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="aiCardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- AI cards populated by JS -->
+            </div>
+
+            <div id="emptyState" class="hidden text-center py-16 space-y-4">
+                <div class="w-16 h-16 mx-auto rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-2xl">
+                    <i class="fa-solid fa-ghost"></i>
+                </div>
+                <h3 class="text-lg font-bold">Không tìm thấy công cụ AI phù hợp</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc danh mục của bạn.</p>
+                <button onclick="resetFilters()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition">
+                    Xóa tất cả bộ lọc
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-12 py-8 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">AIHub © 2026</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 text-center">
+                Tổng hợp những giải pháp AI tiên tiến giúp tối ưu công việc của bạn mỗi ngày.
+            </p>
+            <div class="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400">
+                <a href="#" class="hover:text-blue-500 transition">Báo lỗi</a>
+                <a href="#" class="hover:text-blue-500 transition">Đề xuất AI</a>
+                <a href="#" class="hover:text-blue-500 transition">Chính sách</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="aiModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto custom-scrollbar" id="modalContent">
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-start space-x-4 mb-6">
+                <div id="modalLogo" class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-3xl shrink-0 shadow-md"></div>
+                <div>
+                    <div class="flex items-center space-x-2 flex-wrap gap-y-1">
+                        <h2 id="modalTitle" class="text-2xl font-bold"></h2>
+                        <span id="modalPricing" class="px-2.5 py-0.5 rounded-full text-xs font-semibold"></span>
+                    </div>
+                    <p id="modalCategory" class="text-xs text-blue-500 font-semibold mt-1"></p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-slate-600 dark:text-slate-300 text-sm">
+                <div>
+                    <h4 class="font-semibold text-slate-900 dark:text-white text-base mb-1">Mô tả công cụ:</h4>
+                    <p id="modalDesc" class="leading-relaxed"></p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-slate-900 dark:text-white text-base mb-2">Tính năng nổi bật:</h4>
+                    <ul id="modalFeatures" class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300"></ul>
+                </div>
+
+                <div class="pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 mt-6">
+                    <button id="modalFavBtn" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium transition">
+                        <i id="modalFavIcon" class="fa-regular fa-bookmark"></i>
+                        <span id="modalFavText">Lưu lại</span>
+                    </button>
+                    <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-sm transition shadow-lg shadow-blue-500/25">
+                        <span>Truy cập trang web</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AI Database
+        const aiDatabase = [
+            {
+                id: 'chatgpt',
+                name: 'ChatGPT',
+                category: 'Text/Chatbot',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-robot',
+                bgColor: 'bg-emerald-600',
+                shortDesc: 'Trợ lý AI hội thoại thông minh hàng đầu từ OpenAI, hỗ trợ đa nhiệm mạnh mẽ.',
+                fullDesc: 'ChatGPT là mô hình ngôn ngữ lớn mạnh mẽ được phát triển bởi OpenAI, giúp trả lời câu hỏi, viết lách, giải toán, viết code và sáng tạo ý tưởng.',
+                features: ['Mô hình GPT-4o đa phương thức mới nhất', 'Hỗ trợ trò chuyện bằng giọng nói real-time', 'Tạo & phân tích hình ảnh, tệp tin', 'Tạo custom GPTs theo nhu cầu riêng'],
+                url: 'https://chatgpt.com/',
+                featured: true,
+                popularScore: 99
+            },
+            {
+                id: 'claude',
+                name: 'Claude 3.5',
+                category: 'Text/Chatbot',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-brain',
+                bgColor: 'bg-amber-600',
+                shortDesc: 'Trợ lý AI của Anthropic nổi tiếng với khả năng viết lách tự nhiên và phân tích logic cực kỳ xuất sắc.',
+                fullDesc: 'Claude là công cụ AI đột phá của Anthropic với khả năng suy luận logic xuất sắc, xử lý văn bản dài vượt trội và văn phong tự nhiên gần giống người thật.',
+                features: ['Tính năng Artifacts xem trực tiếp kết quả code/giao diện', 'Khả năng hiểu ngữ cảnh văn bản siêu dài (200k tokens)', 'Việt hóa chuẩn xác, mượt mà', 'Viết code và phân tích dữ liệu chuyên sâu'],
+                url: 'https://claude.ai/',
+                featured: true,
+                popularScore: 98
+            },
+            {
+                id: 'midjourney',
+                name: 'Midjourney',
+                category: 'Image Generation',
+                pricing: 'Paid',
+                iconClass: 'fa-solid fa-palette',
+                bgColor: 'bg-indigo-600',
+                shortDesc: 'Công cụ sáng tạo hình ảnh nghệ thuật đỉnh cao từ câu lệnh chữ với chất lượng photorealistic tuyệt đẹp.',
+                fullDesc: 'Midjourney được mệnh danh là AI vẽ tranh đẹp nhất thế giới hiện nay, tạo ra các bức ảnh nghệ thuật, đồ họa thiết kế và concept art chuyên nghiệp.',
+                features: ['Chất lượng chi tiết ảnh đỉnh cao', 'Nhiều phong cách từ tả thực đến anime, 3D', 'Chỉnh sửa vùng ảnh (Vary Region/Inpainting)', 'Giao diện Web & Discord linh hoạt'],
+                url: 'https://www.midjourney.com/',
+                featured: true,
+                popularScore: 97
+            },
+            {
+                id: 'cursor',
+                name: 'Cursor',
+                category: 'Coding',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-code',
+                bgColor: 'bg-slate-800',
+                shortDesc: 'Trình soạn thảo mã nguồn tích hợp AI giúp lập trình viên tăng gấp 5 lần tốc độ viết code.',
+                fullDesc: 'Cursor là Code Editor dựa trên VS Code tích hợp sẵn các mô hình AI mạnh mẽ nhất (Claude 3.5, GPT-4o) giúp viết, sửa lỗi và refactor code siêu tốc.',
+                features: ['Tự động hoàn thiện code thông minh (Cursor Tab)', 'Chat và hỏi đáp trực tiếp toàn bộ codebase', 'Tự động sửa lỗi syntax và runtime', 'Tích hợp đầy đủ Extension từ VS Code'],
+                url: 'https://www.cursor.com/',
+                featured: true,
+                popularScore: 96
+            },
+            {
+                id: 'sora',
+                name: 'Sora',
+                category: 'Video/Audio',
+                pricing: 'Paid',
+                iconClass: 'fa-solid fa-video',
+                bgColor: 'bg-red-600',
+                shortDesc: 'Mô hình tạo video chân thực từ văn bản với độ chi tiết và chuyển động cực kỳ tự nhiên.',
+                fullDesc: 'Sora từ OpenAI có khả năng biến văn bản thành các đoạn video sống động lên tới 60 giây với góc quay điện ảnh và hiểu biết vật lý thế giới thực.',
+                features: ['Tạo video chuẩn điện ảnh từ text', 'Giữ vững tính nhất quán của đối tượng trong video', 'Tạo nhiều góc quay trong cùng một khung cảnh', 'Chất lượng video độ phân giải cao'],
+                url: 'https://openai.com/sora',
+                featured: false,
+                popularScore: 95
+            },
+            {
+                id: 'perplexity',
+                name: 'Perplexity AI',
+                category: 'Research',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-magnifying-glass-chart',
+                bgColor: 'bg-cyan-600',
+                shortDesc: 'Công cụ tìm kiếm thông minh kết hợp AI, cung cấp câu trả lời chính xác kèm trích dẫn nguồn rõ ràng.',
+                fullDesc: 'Perplexity là công cụ tìm kiếm tri thức thế hệ mới, tổng hợp thông tin từ internet theo thời gian thực và trả lời ngắn gọn kèm link dẫn chứng minh bạch.',
+                features: ['Cập nhật thông tin thời gian thực', 'Đính kèm trích dẫn nguồn tin cậy', 'Chế độ Pro Search tìm kiếm chuyên sâu', 'Tạo bộ sưu tập kiến thức (Collections)'],
+                url: 'https://www.perplexity.ai/',
+                featured: false,
+                popularScore: 94
+            },
+            {
+                id: 'suno',
+                name: 'Suno AI',
+                category: 'Video/Audio',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-music',
+                bgColor: 'bg-purple-600',
+                shortDesc: 'Tạo bài hát hoàn chỉnh có lời và nhạc cụ chất lượng studio chỉ từ một dòng mô tả.',
+                fullDesc: 'Suno AI cho phép bất kỳ ai cũng có thể sáng tác bài hát nguyên bản với đầy đủ lời hát, giai điệu và ca sĩ thể hiện ở mọi thể loại âm nhạc.',
+                features: ['Tạo nhạc đầy đủ Vocal và Nhạc nền', 'Hỗ trợ đa dạng thể loại: Pop, Rock, EDM, Ballad', 'Hỗ trợ viết lời bài hát bằng Tiếng Việt', 'Tải xuống tệp MP3 và Video dễ dàng'],
+                url: 'https://suno.com/',
+                featured: false,
+                popularScore: 93
+            },
+            {
+                id: 'runway',
+                name: 'Runway Gen-3',
+                category: 'Video/Audio',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-film',
+                bgColor: 'bg-pink-600',
+                shortDesc: 'Nền tảng sáng tạo video AI chuyên nghiệp dành cho các nhà làm phim và thiết kế đồ họa.',
+                fullDesc: 'Runway cung cấp bộ công cụ AI toàn diện để tạo video Gen-3 Alpha từ ảnh/chữ, chuyển đổi phong cách video và biên tập hình ảnh chuyên nghiệp.',
+                features: ['Tạo video Gen-3 mượt mà và chân thực', 'Điều khiển camera chuyển động chính xác', 'Xóa vật thể khỏi video trong một cú click', 'Chuyển đổi video sang phong cách hoạt hình/3D'],
+                url: 'https://runwayml.com/',
+                featured: false,
+                popularScore: 92
+            },
+            {
+                id: 'notion-ai',
+                name: 'Notion AI',
+                category: 'Productivity',
+                pricing: 'Paid',
+                iconClass: 'fa-solid fa-pen-to-square',
+                bgColor: 'bg-stone-700',
+                shortDesc: 'Trợ lý viết lách, tóm tắt và quản lý ghi chú tích hợp sẵn bên trong Notion.',
+                fullDesc: 'Notion AI biến không gian làm việc của bạn thành một trợ lý thông minh giúp tự động hóa ghi chú, tóm tắt tài liệu và động não ý tưởng.',
+                features: ['Hỏi đáp trên toàn bộ tài liệu Notion', 'Tự động tạo tóm tắt và bảng hành động (Action Items)', 'Sửa lỗi chính tả & chỉnh sửa văn phong', 'Tạo dàn ý bài viết siêu tốc'],
+                url: 'https://www.notion.so/product/ai',
+                featured: false,
+                popularScore: 90
+            },
+            {
+                id: 'v0',
+                name: 'v0 by Vercel',
+                category: 'Coding',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-laptop-code',
+                bgColor: 'bg-black',
+                shortDesc: 'Tạo giao diện Web UI (React/Tailwind) đẹp mắt chỉ bằng việc nhập mô tả câu lệnh.',
+                fullDesc: 'v0 là công cụ sáng tạo UI độc đáo của Vercel, giúp chuyển đổi mô tả ý tưởng thành mã nguồn React/Tailwind CSS chuẩn xác, có thể copy và sử dụng ngay.',
+                features: ['Sinh code React + Tailwind CSS sống động', 'Chỉnh sửa giao diện tương tác tức thì', 'Export code trực tiếp về dự án', 'Giao diện tối giản, hiện đại'],
+                url: 'https://v0.dev/',
+                featured: false,
+                popularScore: 89
+            },
+            {
+                id: 'elevenlabs',
+                name: 'ElevenLabs',
+                category: 'Video/Audio',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-microphone-lines',
+                bgColor: 'bg-orange-600',
+                shortDesc: 'Công nghệ chuyển văn bản thành giọng nói (Text-to-Speech) tự nhiên và giàu cảm xúc nhất.',
+                fullDesc: 'ElevenLabs tạo ra giọng nói AI chân thực như người thật với đa dạng cảm xúc, hỗ trợ lồng tiếng phim và nhân bản giọng nói (Voice Cloning).',
+                features: ['Chuyển Text thành Voice đa ngôn ngữ (có Tiếng Việt)', 'Nhân bản giọng nói chính xác từ bản thu', 'Tự động lồng tiếng video đa ngôn ngữ (Dubbing)', 'Tùy chỉnh độ truyền cảm và tốc độ nói'],
+                url: 'https://elevenlabs.io/',
+                featured: false,
+                popularScore: 88
+            },
+            {
+                id: 'gamma',
+                name: 'Gamma App',
+                category: 'Productivity',
+                pricing: 'Freemium',
+                iconClass: 'fa-solid fa-file-powerpoint',
+                bgColor: 'bg-violet-600',
+                shortDesc: 'Tạo bài thuyết trình (Presentation), tài liệu và trang web chỉ trong vài giây.',
+                fullDesc: 'Gamma giúp bạn loại bỏ nỗi lo thiết kế Slide PowerPoint thủ công bằng cách tự động tạo slide đẹp mắt, hiện đại dựa trên chủ đề bạn yêu cầu.',
+                features: ['Tạo Slide bài giảng/thuyết trình tự động', 'Tùy chỉnh giao diện màu sắc với 1-click', 'Chèn biểu đồ và hình ảnh AI sinh động', 'Xuất bản file PDF hoặc PowerPoint'],
+                url: 'https://gamma.app/',
+                featured: false,
+                popularScore: 87
+            }
+        ];
+
+        // Categories list
+        const categories = [
+            { id: 'all', name: 'Tất cả', icon: 'fa-border-all' },
+            { id: 'Text/Chatbot', name: 'Text & Chatbot', icon: 'fa-comments' },
+            { id: 'Image Generation', name: 'Tạo Hình Ảnh', icon: 'fa-image' },
+            { id: 'Video/Audio', name: 'Video & Âm Thanh', icon: 'fa-clapperboard' },
+            { id: 'Coding', name: 'Lập Trình Code', icon: 'fa-code' },
+            { id: 'Productivity', name: 'Năng Suất', icon: 'fa-bolt' },
+            { id: 'Research', name: 'Nghiên Cứu', icon: 'fa-book-bookmark' }
+        ];
+
+        let activeCategory = 'all';
+        let activePrice = 'all';
+        let searchQuery = '';
+        let favorites = JSON.parse(localStorage.getItem('ai_hub_favorites')) || [];
+        let showOnlyFavs = false;
+        let currentSort = 'popular';
+
+        // DOM Elements
+        const aiCardGrid = document.getElementById('aiCardGrid');
+        const featuredGrid = document.getElementById('featuredGrid');
+        const categoryContainer = document.getElementById('categoryContainer');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const resultCount = document.getElementById('resultCount');
+        const favCountBadge = document.getElementById('favCountBadge');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderCategories();
+            renderFeatured();
+            renderAIList();
+            updateFavBadge();
+        });
+
+        function initTheme() {
+            if (localStorage.theme === 'light') {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-sun text-amber-500';
+            } else {
+                document.documentElement.classList.add('dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-moon text-slate-300';
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            document.getElementById('themeIcon').className = isDark ? 'fa-solid fa-moon text-slate-300' : 'fa-solid fa-sun text-amber-500';
+        }
+
+        function renderCategories() {
+            categoryContainer.innerHTML = categories.map(cat => {
+                const isActive = activeCategory === cat.id && !showOnlyFavs;
+                return `
+                    <button onclick="setCategory('${cat.id}')" class="flex items-center space-x-2 px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition whitespace-nowrap border ${
+                        isActive 
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20' 
+                        : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                    }">
+                        <i class="fa-solid ${cat.icon}"></i>
+                        <span>${cat.name}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderFeatured() {
+            const featuredItems = aiDatabase.filter(item => item.featured);
+            featuredGrid.innerHTML = featuredItems.map(ai => {
+                const isFav = favorites.includes(ai.id);
+                return `
+                    <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-3 group">
+                        <div class="flex items-start justify-between">
+                            <div class="w-12 h-12 rounded-xl ${ai.bgColor} flex items-center justify-center text-white text-xl shadow-md group-hover:scale-105 transition transform">
+                                <i class="${ai.iconClass}"></i>
+                            </div>
+                            <button onclick="toggleFav('${ai.id}')" class="text-slate-400 hover:text-amber-500 transition p-1">
+                                <i class="${isFav ? 'fa-solid text-amber-500' : 'fa-regular'} fa-bookmark text-base"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <h3 class="font-bold text-base hover:text-blue-500 transition cursor-pointer" onclick="openModal('${ai.id}')">${ai.name}</h3>
+                                ${getBadgeHTML(ai.pricing)}
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${ai.shortDesc}</p>
+                        </div>
+                        <button onclick="openModal('${ai.id}')" class="w-full text-center py-2 bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white rounded-xl text-xs font-semibold transition">
+                            Chi tiết & Khám phá
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderAIList() {
+            let filtered = aiDatabase.filter(ai => {
+                const matchesCat = activeCategory === 'all' || ai.category === activeCategory;
+                const matchesPrice = activePrice === 'all' || ai.pricing === activePrice;
+                const matchesSearch = ai.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      ai.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      ai.category.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesFav = !showOnlyFavs || favorites.includes(ai.id);
+
+                return matchesCat && matchesPrice && matchesSearch && matchesFav;
+            });
+
+            // Sorting
+            if (currentSort === 'nameAsc') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (currentSort === 'nameDesc') {
+                filtered.sort((a, b) => b.name.localeCompare(a.name));
+            } else {
+                filtered.sort((a, b) => b.popularScore - a.popularScore);
+            }
+
+            resultCount.textContent = `Hiển thị ${filtered.length} công cụ AI`;
+
+            if (filtered.length === 0) {
+                aiCardGrid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            aiCardGrid.innerHTML = filtered.map(ai => {
+                const isFav = favorites.includes(ai.id);
+                return `
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-blue-500/50 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl ${ai.bgColor} flex items-center justify-center text-white text-xl shadow-md group-hover:scale-110 transition duration-300">
+                                    <i class="${ai.iconClass}"></i>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    ${getBadgeHTML(ai.pricing)}
+                                    <button onclick="toggleFav('${ai.id}')" class="p-2 text-slate-400 hover:text-amber-500 transition">
+                                        <i class="${isFav ? 'fa-solid text-amber-500' : 'fa-regular'} fa-bookmark text-base"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-blue-500 font-mono">${ai.category}</span>
+                            <h3 class="text-lg font-bold mt-0.5 group-hover:text-blue-500 transition cursor-pointer" onclick="openModal('${ai.id}')">${ai.name}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3 leading-relaxed">${ai.shortDesc}</p>
+                        </div>
+
+                        <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2">
+                            <button onclick="openModal('${ai.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-500 flex items-center space-x-1">
+                                <span>Chi tiết</span>
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                            <a href="${ai.url}" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-600 dark:bg-slate-800 dark:hover:bg-blue-600 text-blue-600 dark:text-blue-400 hover:text-white dark:hover:text-white text-xs font-bold transition flex items-center space-x-1.5">
+                                <span>Khám phá</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Helper: Pricing Badge
+        function getBadgeHTML(pricing) {
+            let colorClasses = '';
+            if (pricing === 'Free') colorClasses = 'bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800';
+            else if (pricing === 'Freemium') colorClasses = 'bg-blue-100 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800';
+            else colorClasses = 'bg-purple-100 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-800';
+
+            return `<span class="px-2 py-0.5 rounded-md text-[11px] font-medium border ${colorClasses}">${pricing}</span>`;
+        }
+
+        function setCategory(catId) {
+            activeCategory = catId;
+            showOnlyFavs = false;
+            updateFavFilterBtn();
+            renderCategories();
+            renderAIList();
+        }
+
+        function setPriceFilter(price) {
+            activePrice = price;
+            document.querySelectorAll('.price-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+            });
+            event.target.classList.add('bg-blue-600', 'text-white');
+            event.target.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+            renderAIList();
+        }
+
+        function handleSearch() {
+            searchQuery = searchInput.value.trim();
+            clearSearchBtn.classList.toggle('hidden', searchQuery === '');
+            renderAIList();
+        }
+
+        function clearSearch() {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.add('hidden');
+            renderAIList();
+        }
+
+        function handleSort() {
+            currentSort = document.getElementById('sortSelect').value;
+            renderAIList();
+        }
+
+        function toggleFavoriteFilter() {
+            showOnlyFavs = !showOnlyFavs;
+            if (showOnlyFavs) activeCategory = 'all';
+            updateFavFilterBtn();
+            renderCategories();
+            renderAIList();
+        }
+
+        function updateFavFilterBtn() {
+            const btn = document.getElementById('favoriteFilterBtn');
+            if (showOnlyFavs) {
+                btn.classList.add('bg-amber-500', 'text-white', 'border-amber-500');
+                btn.classList.remove('border-slate-200', 'dark:border-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            } else {
+                btn.classList.remove('bg-amber-500', 'text-white', 'border-amber-500');
+                btn.classList.add('border-slate-200', 'dark:border-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            }
+        }
+
+        function resetFilters() {
+            activeCategory = 'all';
+            activePrice = 'all';
+            searchQuery = '';
+            showOnlyFavs = false;
+            searchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            updateFavFilterBtn();
+            renderCategories();
+            renderAIList();
+        }
+
+        function toggleFav(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(favId => favId !== id);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('ai_hub_favorites', JSON.stringify(favorites));
+            updateFavBadge();
+            renderFeatured();
+            renderAIList();
+
+            // Update modal if open
+            if (!document.getElementById('aiModal').classList.contains('hidden')) {
+                updateModalFavState(id);
+            }
+        }
+
+        function updateFavBadge() {
+            favCountBadge.textContent = favorites.length;
+        }
+
+        let activeModalAiId = null;
+
+        function openModal(id) {
+            const ai = aiDatabase.find(item => item.id === id);
+            if (!ai) return;
+
+            activeModalAiId = id;
+            
+            const logo = document.getElementById('modalLogo');
+            logo.className = `w-16 h-16 rounded-2xl flex items-center justify-center text-white text-3xl shrink-0 shadow-md ${ai.bgColor}`;
+            logo.innerHTML = `<i class="${ai.iconClass}"></i>`;
+
+            document.getElementById('modalTitle').textContent = ai.name;
+            document.getElementById('modalCategory').textContent = ai.category.toUpperCase();
+            
+            const pricingBadge = document.getElementById('modalPricing');
+            pricingBadge.textContent = ai.pricing;
+            pricingBadge.className = `px-2.5 py-0.5 rounded-full text-xs font-semibold ${
+                ai.pricing === 'Free' ? 'bg-emerald-100 text-emerald-600' :
+                ai.pricing === 'Freemium' ? 'bg-blue-100 text-blue-600' : 'bg-purple-100 text-purple-600'
+            }`;
+
+            document.getElementById('modalDesc').textContent = ai.fullDesc;
+            
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = ai.features.map(f => `<li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <span>${f}</span></li>`).join('');
+
+            document.getElementById('modalLink').href = ai.url;
+            
+            updateModalFavState(id);
+
+            const modal = document.getElementById('aiModal');
+            const content = document.getElementById('modalContent');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function updateModalFavState(id) {
+            const isFav = favorites.includes(id);
+            const favBtn = document.getElementById('modalFavBtn');
+            const favIcon = document.getElementById('modalFavIcon');
+            const favText = document.getElementById('modalFavText');
+
+            favBtn.onclick = () => toggleFav(id);
+
+            if (isFav) {
+                favIcon.className = 'fa-solid fa-bookmark text-amber-500';
+                favText.textContent = 'Đã lưu';
+            } else {
+                favIcon.className = 'fa-regular fa-bookmark';
+                favText.textContent = 'Lưu lại';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('aiModal');
+            const content = document.getElementById('modalContent');
+
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal on outside click
+        document.getElementById('aiModal').addEventListener('click', (e) => {
+            if (e.target.id === 'aiModal') closeModal();
+        });
+    </script>
+</body>
+</html>
